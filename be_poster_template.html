@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{LEVEL}} - 51Talk</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#040e2c;
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  display:flex;justify-content:center;
+  min-height:100vh;
+}
+.poster{
+  width:640px;background:#040e2c;color:#fff;
+  position:relative;overflow:hidden;
+}
+
+/* ambient glows */
+.poster::before{
+  content:'';position:absolute;top:60px;right:-80px;
+  width:420px;height:420px;
+  background:radial-gradient(circle,rgba(1,62,202,.22) 0%,transparent 68%);
+  pointer-events:none;z-index:0;
+}
+.poster::after{
+  content:'';position:absolute;bottom:80px;left:-100px;
+  width:340px;height:340px;
+  background:radial-gradient(circle,rgba(38,183,255,.07) 0%,transparent 68%);
+  pointer-events:none;z-index:0;
+}
+
+/* HEADER */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 28px 16px;position:relative;z-index:1;
+}
+.header img{height:26px}
+.level-badge{
+  background:rgba(255,237,110,.1);border:1px solid rgba(255,237,110,.35);
+  color:#ffed6e;padding:5px 14px;border-radius:20px;
+  font-size:.8rem;font-weight:700;letter-spacing:1px;
+}
+
+/* HERO */
+.hero{
+  display:grid;grid-template-columns:1fr 220px;gap:12px;
+  padding:8px 28px 28px;position:relative;z-index:1;
+  align-items:center;min-height:210px;
+}
+.hero-text h1{
+  font-size:1.8rem;font-weight:800;line-height:1.15;
+  background:linear-gradient(135deg,#fff 30%,#ffed6e 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:12px;
+}
+.hero-text .phase{
+  font-size:.8rem;color:#26b7ff;font-weight:500;line-height:1.55;
+}
+
+/* PAIN HOOK */
+.pain-hook{
+  margin:0 28px 22px;padding:15px 20px;
+  background:rgba(255,107,107,.055);
+  border-left:3px solid rgba(255,107,107,.55);
+  border-radius:0 12px 12px 0;position:relative;z-index:1;
+}
+.pain-hook .q{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px}
+.pain-hook .cta-line{font-size:.84rem;color:#ffed6e;font-weight:700}
+
+/* METHOD CARD */
+.method{
+  margin:0 28px 22px;
+  background:linear-gradient(150deg,#fff 0%,#f4f7ff 100%);
+  border-radius:16px;padding:18px 18px 16px;color:#1a1a2e;
+  box-shadow:0 8px 36px rgba(0,0,0,.45),0 2px 8px rgba(1,62,202,.12);
+  position:relative;z-index:1;
+}
+.method-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:14px;
+}
+.method-title{font-size:.88rem;font-weight:800;color:#013eca;margin-bottom:2px}
+.method-meta{font-size:.7rem;color:#666}
+.scenario-badge{
+  font-size:.64rem;background:rgba(1,62,202,.07);color:#013eca;
+  border:1px solid rgba(1,62,202,.22);padding:3px 9px;border-radius:10px;
+  font-weight:600;white-space:nowrap;flex-shrink:0;margin-left:8px;
+}
+.phases-row{
+  display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr;
+  align-items:center;gap:3px;
+}
+.phase-pill{text-align:center;padding:10px 6px;border-radius:10px}
+.phase-pill .name{
+  font-size:.6rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.9px;margin-bottom:5px;
+}
+.phase-pill .steps{font-size:.62rem;color:rgba(0,0,0,.5);margin-bottom:5px}
+.phase-pill .steps span{font-weight:700}
+.phase-pill .ex{font-size:.64rem;font-style:italic;color:rgba(0,0,0,.55);line-height:1.4}
+.phase-arrow{text-align:center;font-size:1rem;color:#bbb;font-weight:700}
+
+/* TOPICS */
+.topics{padding:0 28px 20px;position:relative;z-index:1}
+.section-label{
+  font-size:.65rem;color:#ffed6e;letter-spacing:2.5px;
+  text-transform:uppercase;font-weight:700;margin-bottom:10px;
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  background:rgba(38,183,255,.09);border:1px solid rgba(38,183,255,.2);
+  color:#26b7ff;padding:6px 12px;border-radius:16px;
+  font-size:.73rem;font-weight:600;
+}
+
+/* CTA */
+.cta-section{padding:4px 28px 24px;position:relative;z-index:1}
+.cta-btn{
+  display:block;width:100%;
+  background:linear-gradient(135deg,#013eca 0%,#1a56db 100%);
+  color:#fff;border:none;padding:17px 32px;border-radius:14px;
+  font-size:1rem;font-weight:800;letter-spacing:.5px;text-align:center;
+  box-shadow:0 6px 28px rgba(1,62,202,.45),0 2px 8px rgba(0,0,0,.2);
+  margin-bottom:10px;
+}
+.cta-tagline{font-size:.75rem;color:rgba(255,255,255,.4);text-align:center}
+
+/* FOOTER */
+.footer{
+  padding:16px 28px;border-top:1px solid rgba(255,237,110,.1);
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;
+}
+.progress-row{display:flex;gap:4px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1)}
+.dot.on{background:#ffed6e;box-shadow:0 0 5px rgba(255,237,110,.4)}
+.footer-right{text-align:right}
+.footer-right img{height:18px;opacity:.45}
+.course-label{font-size:.6rem;color:rgba(255,255,255,.25);margin-top:3px}
+
+@media print{
+  body{background:#040e2c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="header">
+    <img src="__LOGO_B64__" alt="51Talk">
+    <div class="level-badge">{{LEVEL}} · {{CEFR}}</div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <h1>{{HERO_LINE}}</h1>
+      <div class="phase">{{HERO_SUB}}</div>
+    </div>
+    <div class="hero-visual">{{HERO_SVG}}</div>
+  </div>
+
+  <div class="pain-hook">
+    <div class="q">{{PAIN_Q}}</div>
+    <div class="cta-line">{{PAIN_CTA}}</div>
+  </div>
+
+  <div class="method">
+    <div class="method-header">
+      <div>
+        <div class="method-title">The Spiral Method</div>
+        <div class="method-meta">{{SCENARIO_COUNT}} workplace scenarios · 6 lessons each</div>
+      </div>
+      <span class="scenario-badge">📍 {{EXAMPLE_SCENARIO}}</span>
+    </div>
+    <div class="phases-row">{{SPIRAL_PHASES_HTML}}</div>
+  </div>
+
+  <div class="topics">
+    <div class="section-label">Topics</div>
+    <div class="tag-row">{{SCENARIO_TAGS}}</div>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-btn">{{FOOTER_CTA}}</div>
+    <div class="cta-tagline">{{FOOTER_TAGLINE}}</div>
+  </div>
+
+  <div class="footer">
+    <div class="progress-row">{{PROGRESS_DOTS}}</div>
+    <div class="footer-right">
+      <img src="__LOGO_B64__" alt="51Talk">
+      <div class="course-label">{{COURSE_NAME}}</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

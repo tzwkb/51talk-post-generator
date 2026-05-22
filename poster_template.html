@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{LEVEL}} - 51Talk</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:linear-gradient(135deg,#013eca 0%,#012680 100%);
+    font-family:system-ui,-apple-system,sans-serif;
+    display:flex;justify-content:center;padding:20px 12px;
+    min-height:100vh;
+  }
+  .poster{
+    max-width:640px;width:100%;color:#fff;
+  }
+  /* HEADER */
+  .header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 0 16px;border-bottom:2px solid rgba(255,237,110,0.3);
+  }
+  .header img{height:32px}
+  .level-badge{
+    background:rgba(255,237,110,0.15);border:1px solid #ffed6e;
+    color:#ffed6e;padding:6px 16px;border-radius:20px;
+    font-size:0.9rem;font-weight:700;letter-spacing:0.5px;
+  }
+  /* HERO */
+  .hero{padding:28px 0 20px;text-align:center}
+  .hero h1{
+    font-size:2rem;font-weight:800;line-height:1.25;
+    background:linear-gradient(90deg,#fff 0%,#ffed6e 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .hero .sub{color:#26b7ff;font-size:1rem;margin-top:8px;font-weight:500}
+  /* STAT CARDS */
+  .stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+    margin-bottom:24px;
+  }
+  .stat-card{
+    background:rgba(255,255,255,0.08);border-radius:12px;
+    padding:16px 10px;text-align:center;
+    backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.1);
+  }
+  .stat-card .num{
+    font-size:2rem;font-weight:800;color:#ffed6e;line-height:1.1;
+  }
+  .stat-card .label{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:4px}
+  /* METHOD */
+  .method{
+    background:#fff;border-radius:16px;padding:24px 20px;color:#1a1a2e;
+    margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  }
+  .method h3{font-size:1.1rem;font-weight:700;margin-bottom:4px;color:#013eca}
+  .method .subtitle{font-size:0.85rem;color:#666;margin-bottom:16px}
+  .spiral{
+    display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;
+  }
+  .spiral-step{
+    flex:1;min-width:80px;text-align:center;
+    padding:10px 6px;border-radius:10px;
+    background:linear-gradient(135deg,#e8f0ff,#d0e0ff);
+    font-size:0.75rem;
+  }
+  .spiral-step .step-num{
+    width:24px;height:24px;border-radius:50%;
+    background:#013eca;color:#fff;font-weight:700;font-size:0.75rem;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 6px;
+  }
+  .spiral-step .step-title{font-weight:700;color:#013eca;margin-bottom:2px}
+  .spiral-step .step-example{color:#555;font-size:0.7rem;font-style:italic}
+  .spiral-arrow{
+    display:flex;align-items:center;color:#013eca;font-size:1.2rem;font-weight:700;
+  }
+  /* QUOTES */
+  .quotes{margin-bottom:24px}
+  .quotes h3{
+    font-size:0.9rem;color:#ffed6e;margin-bottom:12px;
+    text-transform:uppercase;letter-spacing:1px;
+  }
+  .quote{
+    background:rgba(255,255,255,0.06);border-left:3px solid #ffed6e;
+    padding:14px 18px;margin-bottom:8px;border-radius:0 10px 10px 0;
+    font-size:1rem;line-height:1.5;font-style:italic;
+  }
+  /* SCENARIOS */
+  .scenarios{
+    display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;
+  }
+  .scenario-tag{
+    background:rgba(38,183,255,0.15);color:#26b7ff;
+    padding:8px 14px;border-radius:20px;font-size:0.82rem;
+    font-weight:600;border:1px solid rgba(38,183,255,0.3);
+  }
+  /* PROGRESS */
+  .progress{margin-bottom:28px;text-align:center}
+  .progress-dots{display:flex;justify-content:center;gap:6px;margin-bottom:8px}
+  .progress-dot{
+    width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.2);
+  }
+  .progress-dot.filled{background:#ffed6e;box-shadow:0 0 8px rgba(255,237,110,0.5)}
+  .progress-label{font-size:0.8rem;color:rgba(255,255,255,0.6)}
+  .progress-label strong{color:#ffed6e}
+  /* FOOTER */
+  .footer{
+    text-align:center;padding:20px 0;border-top:1px solid rgba(255,237,110,0.2);
+  }
+  .footer .cta{font-size:1.15rem;font-weight:700;color:#ffed6e;margin-bottom:4px}
+  .footer .tagline{font-size:0.85rem;color:rgba(255,255,255,0.6)}
+  .footer img{height:20px;margin-top:8px;opacity:0.7}
+  /* RESPONSIVE */
+  @media(max-width:480px){
+    .hero h1{font-size:1.5rem}
+    .stat-card .num{font-size:1.5rem}
+    .spiral-step{min-width:60px;font-size:0.7rem}
+  }
+  /* IS THIS YOU */
+  .pain-points{background:rgba(255,255,255,0.06);border-radius:14px;padding:18px 20px;margin-bottom:24px;border-left:4px solid rgba(255,107,107,0.7)}
+  .pain-q{font-size:0.9rem;color:rgba(255,255,255,0.85);font-weight:600;margin-bottom:10px}
+  .pain-item{font-size:0.85rem;color:rgba(255,255,255,0.75);margin-bottom:6px;line-height:1.5}
+  .pain-cta{margin-top:12px;font-size:0.9rem;color:#ffed6e;font-weight:700}
+  /* SCENARIO BADGE */
+  .scenario-badge{font-size:0.72rem;background:rgba(1,62,202,0.1);color:#013eca;border:1px solid rgba(1,62,202,0.4);padding:3px 10px;border-radius:12px;font-weight:600;white-space:nowrap;flex-shrink:0}
+  /* PROGRESS MILESTONES */
+  .progress-milestones{display:flex;justify-content:center;gap:6px;margin-top:3px;margin-bottom:6px}
+  .milestone{width:12px;text-align:center;font-size:0.5rem;color:rgba(255,255,255,0.2);overflow:visible;white-space:nowrap}
+  .milestone.hit{color:rgba(255,237,110,0.65);font-weight:700}
+  /* QR SLOT */
+  .qr-slot{width:72px;height:72px;border:2px dashed rgba(255,255,255,0.2);border-radius:8px;margin:12px auto 0;display:flex;align-items:center;justify-content:center;font-size:0.55rem;color:rgba(255,255,255,0.2);letter-spacing:1.5px;text-transform:uppercase}
+  @media print{
+    body{background:#013eca!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div style="text-align:center;padding:4px 0 10px;font-size:0.75rem;color:rgba(255,237,110,0.7);letter-spacing:1px;text-transform:uppercase">{{COURSE_NAME}}</div>
+  <div class="header">
+    <img src="__LOGO_B64__" alt="51Talk">
+    <div class="level-badge">{{LEVEL}} · {{CEFR}}</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>{{HERO_LINE}}</h1>
+    <div class="sub">{{HERO_SUB}}</div>
+  </div>
+
+  <!-- IS THIS YOU -->
+  {{IS_THIS_YOU}}
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num">{{VOCAB_COUNT}}+</div>
+      <div class="label">{{WORD_LABEL}}</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">{{EXPR_COUNT}}</div>
+      <div class="label">Expressions</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">{{LESSON_COUNT}}</div>
+      <div class="label">Live Sessions</div>
+    </div>
+  </div>
+
+  <!-- METHOD -->
+  <div class="method">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <h3 style="margin-bottom:0">The Spiral Method</h3>
+      <span class="scenario-badge">📍 {{EXAMPLE_SCENARIO}}</span>
+    </div>
+    <div class="subtitle">{{SCENARIO_COUNT}} scenarios × 6 layers = deep learning that sticks</div>
+    <div class="spiral">
+      {{SPIRAL_STEPS}}
+    </div>
+  </div>
+
+  <!-- QUOTES -->
+  <div class="quotes">
+    <h3>You will say — with confidence</h3>
+    {{QUOTES}}
+  </div>
+
+  <!-- SCENARIOS -->
+  <div style="font-size:0.9rem;color:#ffed6e;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Your Real Life</div>
+  <div class="scenarios">
+    {{SCENARIO_TAGS}}
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress">
+    <div class="progress-dots">
+      {{PROGRESS_DOTS}}
+    </div>
+    <div class="progress-milestones">
+      {{PROGRESS_MILESTONES}}
+    </div>
+    <div class="progress-label">{{PROGRESS_TEXT}}</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="cta">{{FOOTER_CTA}}</div>
+    <div class="tagline">{{FOOTER_TAGLINE}}</div>
+    <img src="__LOGO_B64__" alt="51Talk">
+    <div class="qr-slot">QR</div>
+  </div>
+
+</div>
+</body>
+</html>
