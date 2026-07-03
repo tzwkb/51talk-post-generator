@@ -1,6 +1,6 @@
 # 51Talk Post Generator
 
-[中文](README_ZH.md) | English
+English | [中文](README_ZH.md)
 
 
 51Talk BE/GE 课程海报生成工具，用于从课程表格提取等级信息、生成营销文案，并渲染可交付 PNG 海报。
