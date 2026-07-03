@@ -1,9 +1,11 @@
 # 51Talk Post Generator
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+
 English | [中文](README_ZH.md)
 
-
-51Talk BE/GE 课程海报生成工具，用于从课程表格提取等级信息、生成营销文案，并渲染可交付 PNG 海报。
+A 51Talk BE/GE course poster generator that extracts level data from spreadsheets, drafts marketing copy, and renders deliverable PNG posters.
 
 A 51Talk BE/GE course poster generator that extracts level data from spreadsheets, creates marketing copy through an LLM API, and renders delivery-ready PNG posters.
 
