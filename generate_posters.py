@@ -10,9 +10,13 @@ WORK_DIR = r"E:\51talk_automation\post_generator"
 OUT_DIR = os.path.join(WORK_DIR, "output")
 os.makedirs(OUT_DIR, exist_ok=True)
 
+API_KEY = os.environ.get("LLM_API_KEY", "")
+if not API_KEY:
+    raise RuntimeError("LLM_API_KEY not set")
+
 client = AsyncOpenAI(
-    api_key="sk-UcHLM9G1fYCgefyghOfdMFJuCrA31Hhrc2uHGLTak4IjG03o",
-    base_url="https://api.vectorengine.ai/v1",
+    api_key=API_KEY,
+    base_url=os.environ.get("LLM_BASE_URL", "https://api.vectorengine.ai/v1"),
 )
 
 with open(os.path.join(WORK_DIR, "51talklogo.png"), "rb") as f:
